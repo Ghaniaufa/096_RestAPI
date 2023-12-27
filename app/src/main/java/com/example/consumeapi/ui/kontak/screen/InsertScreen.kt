@@ -1,5 +1,7 @@
 package com.example.consumeapi.ui.kontak.screen
 
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,8 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.consumeapi.navigation.DestinasiNavigasi
+import com.example.consumeapi.ui.PenyediaViewModel
 import com.example.consumeapi.ui.home.viewmodel.InsertUiEvent
 import com.example.consumeapi.ui.home.viewmodel.InsertUiState
+import com.example.consumeapi.ui.kontak.viewmodel.InsertViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -95,4 +102,20 @@ fun EntryKontakBody(
             Text(text = "Simpan")
         }
     }
+}
+
+object DestinasiEntry : DestinasiNavigasi{
+    override val route = "item_entry"
+    override val titleRes = "Entry Siswa"
+}
+
+
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+@Composable
+fun EntryKontakScreen(
+    navigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory)
+){
+
 }
