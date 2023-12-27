@@ -5,9 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.consumeapi.model.Kontak
 import com.example.consumeapi.repository.KontakRepository
 import com.example.consumeapi.ui.home.viewmodel.InsertUiEvent
 import com.example.consumeapi.ui.home.viewmodel.InsertUiState
+import com.example.consumeapi.ui.home.viewmodel.toInsertUiEvent
 import com.example.consumeapi.ui.home.viewmodel.toKontak
 import kotlinx.coroutines.launch
 
@@ -38,4 +40,8 @@ data class InsertUiEvent(
     val nama: String = "",
     val email: String = "",
     val nohp: String = "",
+)
+
+fun Kontak.toUiStateKontak(): InsertUiState = InsertUiState(
+    insertUiEvent = toInsertUiEvent(),
 )
