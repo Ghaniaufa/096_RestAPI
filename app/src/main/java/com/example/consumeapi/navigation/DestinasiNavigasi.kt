@@ -4,4 +4,3 @@ interface DestinasiNavigasi {
 
         val titleRes: String
     }
-}
