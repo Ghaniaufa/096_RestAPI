@@ -12,15 +12,20 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.consumeapi.navigation.DestinasiNavigasi
 import com.example.consumeapi.ui.PenyediaViewModel
+import com.example.consumeapi.ui.TopAppBarKontak
 import com.example.consumeapi.ui.home.viewmodel.InsertUiEvent
 import com.example.consumeapi.ui.home.viewmodel.InsertUiState
 import com.example.consumeapi.ui.kontak.viewmodel.InsertViewModel
@@ -110,6 +115,7 @@ object DestinasiEntry : DestinasiNavigasi{
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Composable
 fun EntryKontakScreen(
@@ -117,5 +123,18 @@ fun EntryKontakScreen(
     modifier: Modifier = Modifier,
     viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
+    val coroutineScope = rememberCoroutineScope()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    Scaffold(
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            TopAppBarKontak(
+                title = DestinasiEntry.titleRes,
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
 
+            )
+        }) {}
+    )
 }
