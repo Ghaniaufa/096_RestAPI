@@ -37,7 +37,7 @@ import com.example.consumeapi.ui.home.viewmodel.KontakUIState
         retryAction: () -> Unit,
         modifier: Modifier = Modifier,
         onDeleteClick: (Kontak) -> Unit = {},
-        onDetailClick: (Kontak) -> Unit
+        onDetailClick: (Int) -> Unit
     ){
         when(kontakUIState) {
             is KontakUIState.Loading -> Onloading(modifier = modifier.fillMaxSize())

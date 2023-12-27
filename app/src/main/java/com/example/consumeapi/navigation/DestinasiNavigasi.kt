@@ -1,7 +1,7 @@
 package com.example.consumeapi.navigation
-
 interface DestinasiNavigasi {
-    val route : String
+        val route : String
 
-    val titleRes: String
+        val titleRes: String
+    }
 }
