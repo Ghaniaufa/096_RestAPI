@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,9 +28,20 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         navController.navigate(
           (DestinasiEntry.route)
         )
+
+      }, onDetailClick = {})
+    }
+    composable(DestinasiEntry.route){
+      EntryKontakScreen(navigateBack = {
+        navController.navigate(
+          DestinasiHome.route
+        ){
+          popUpTo(DestinasiHome.route){
+            inclusive = true
+          }
+        }
       })
     }
-
 
   }
 }
