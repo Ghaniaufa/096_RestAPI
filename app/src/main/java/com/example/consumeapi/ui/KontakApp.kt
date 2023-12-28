@@ -24,7 +24,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.consumeapi.R
 import com.example.consumeapi.navigation.PengelolaHalaman
 import com.example.consumeapi.ui.home.viewmodel.HomeViewModel
-import com.example.consumeapi.ui.screens.HomeScreen
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +34,6 @@ fun KontakApp(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {TopAppBar(scrollBehavior = scrollBehavior)}
     ){
         Surface(
             modifier = Modifier

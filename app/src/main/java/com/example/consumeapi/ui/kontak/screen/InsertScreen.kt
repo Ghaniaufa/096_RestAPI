@@ -30,7 +30,7 @@ import com.example.consumeapi.ui.PenyediaViewModel
 import com.example.consumeapi.ui.TopAppBarKontak
 import com.example.consumeapi.ui.home.viewmodel.InsertUiEvent
 import com.example.consumeapi.ui.home.viewmodel.InsertUiState
-import com.example.consumeapi.ui.kontak.viewmodel.InsertViewModel
+import com.example.consumeapi.ui.home.viewmodel.InsertViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -141,7 +141,7 @@ fun EntryKontakScreen(
         }) { innerPadding ->
         EntryKontakBody(
             insertUiState = viewModel.insertKontakState,
-            onSiswaValueChange = viewModel::updateInsertKontak,
+            onSiswaValueChange = viewModel::updateInsertKontakState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertKontak()

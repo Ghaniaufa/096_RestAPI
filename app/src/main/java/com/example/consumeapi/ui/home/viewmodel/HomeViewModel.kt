@@ -11,6 +11,7 @@ import coil.network.HttpException
 import com.example.consumeapi.model.Kontak
 import com.example.consumeapi.repository.KontakRepository
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 
 sealed class KontakUIState{
@@ -21,7 +22,7 @@ sealed class KontakUIState{
 
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class HomeViewModel(private val kontakRepository: KontakRepository) : ViewModel(){
+class HomeViewModel(private val kontakRepository: KontakRepository) : ViewModel() {
     var kontakUIState: KontakUIState by mutableStateOf(KontakUIState.Loading)
         private set
 
@@ -31,30 +32,30 @@ class HomeViewModel(private val kontakRepository: KontakRepository) : ViewModel(
 
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getKontak(){
+    fun getKontak() {
         viewModelScope.launch {
             kontakUIState = KontakUIState.Loading
             kontakUIState = try {
                 KontakUIState.Success(kontakRepository.getKontak())
-            } catch (e: java.io.IOException){
+            } catch (e: IOException) {
+                KontakUIState.Error
+            } catch (e: HttpException) {
+                KontakUIState.Error
+            }
+        }
+    }
+
+    fun deleteKontak(id: Int){
+        viewModelScope.launch {
+            try {
+                kontakRepository.deleteKontak(id)
+            } catch (e: IOException){
                 KontakUIState.Error
             } catch (e: HttpException){
                 KontakUIState.Error
             }
         }
     }
-    fun deleteKontak(id : Int){
-        viewModelScope.launch {
-            try {
-                kontakRepository.deleteKontak(id)
-            } catch (e: java.io.IOException){
-                KontakUIState.Error
-            }catch (e: HttpException) {
-                KontakUIState.Error
-            }
-        }
-    }
 }
-
 
 

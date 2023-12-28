@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.consumeapi.KontakApplication
 import com.example.consumeapi.ui.home.viewmodel.HomeViewModel
-import com.example.consumeapi.ui.kontak.viewmodel.InsertViewModel
+import com.example.consumeapi.ui.home.viewmodel.InsertViewModel
 
 object PenyediaViewModel {
     @SuppressLint("SupportAnnotationUsage")
